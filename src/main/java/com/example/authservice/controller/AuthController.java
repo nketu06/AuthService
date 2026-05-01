@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @PostMapping("/signup")
-    private UserDto signUp(@RequestBody SignUpRequestDto  signUpRequestDto) {
+  @PostMapping("/signup")
+  private UserDto signUp(@RequestBody SignUpRequestDto signUpRequestDto) {
+    return null;
+  }
 
-    }
-
-    @PostMapping("login")
-    private UserDto login(@RequestBody LoginRequestDto loginRequestDto) {
-
-    }
+  @PostMapping("login")
+  private UserDto login(@RequestBody LoginRequestDto loginRequestDto) {
+    return null;
+  }
 }

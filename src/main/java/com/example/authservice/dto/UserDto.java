@@ -1,15 +1,14 @@
 package com.example.authservice.dto;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Setter
 @Getter
 public class UserDto {
-    private Long id;
-    private String name;
-    private String emailId;
-    private List<String> roles;
+  private Long id;
+  private String name;
+  private String emailId;
+  private List<String> roles;
 }
