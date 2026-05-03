@@ -3,10 +3,13 @@ package com.example.authservice.service;
 import com.example.authservice.exceptions.UserAlreadyFoundException;
 import com.example.authservice.exceptions.UserNotFoundException;
 import com.example.authservice.exceptions.WrongPasswordException;
+import com.example.authservice.models.Role;
+import com.example.authservice.models.State;
 import com.example.authservice.models.User;
 import com.example.authservice.repository.RoleRepo;
 import com.example.authservice.repository.UserRepo;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,9 +36,21 @@ public class AuthService {
     newUser.setPhoneNumber(phoneNumber);
     newUser.setCreatedAt(new Date());
     // check and assign default role to user
-    userRepo.save(newUser);
-
-    return newUser;
+    Role role =null;
+    Optional<Role> roleOptional = roleRepo.findRoleByValue("NON_ADMIN");
+    if (roleOptional.isEmpty()) {
+      role = new Role();
+      role.setValue("NON_ADMIN");
+      role.setCreatedAt(new Date());
+      role.setState(State.ACTIVE);
+      roleRepo.save(role);
+    }else {
+      role = roleOptional.get();
+    }
+    List<Role> roles = newUser.getRoles();
+    roles.add(role);
+    newUser.setRoles(roles);
+    return userRepo.save(newUser);
   }
 
   public User login(String emailId, String password) throws WrongPasswordException {

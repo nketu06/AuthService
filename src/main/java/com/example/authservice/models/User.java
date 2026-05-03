@@ -15,6 +15,5 @@ public class User extends BaseModel {
   private String emailId;
   private String password;
   private String phoneNumber;
-
   @ManyToMany() private List<Role> roles = new ArrayList<>();
 }
