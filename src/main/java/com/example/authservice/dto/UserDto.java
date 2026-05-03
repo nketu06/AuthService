@@ -1,8 +1,6 @@
 package com.example.authservice.dto;
 
 import java.util.List;
-
-import com.example.authservice.models.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,5 +11,4 @@ public class UserDto {
   private String name;
   private String emailId;
   private List<String> roles;
-
 }
